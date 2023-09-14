@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "covid-reporting-danr"
+		},
+		"Is_ablob_covidreportingdanr_connectionString": {
+			"value": ""
+		},
+		"ls_adls_covidreportingd_accountKey": {
+			"value": ""
+		},
+		"ls_adls_covidreportingd_properties_typeProperties_url": {
+			"value": "https://covidreportingd.dfs.core.windows.net/"
+		},
+		"ls_http_opendata_ecdc_europa_eu_properties_typeProperties_url": {
+			"value": "https://github.com"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
