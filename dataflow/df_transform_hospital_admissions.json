@@ -17,6 +17,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "CountrySource"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "DimDateSource"
 				}
 			],
 			"sinks": [],
@@ -29,6 +36,9 @@
 				},
 				{
 					"name": "selectRequiredFields2"
+				},
+				{
+					"name": "SplitDailyFromWeekly"
 				}
 			],
 			"scriptLines": [
@@ -54,6 +64,23 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> CountrySource",
+				"source(output(",
+				"          date_key as string,",
+				"          date as string,",
+				"          year as string,",
+				"          month as string,",
+				"          day as string,",
+				"          day_name as string,",
+				"          day_of_year as string,",
+				"          week_of_month as string,",
+				"          week_of_year as string,",
+				"          month_name as string,",
+				"          year_month as string,",
+				"          year_week as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> DimDateSource",
 				"HospitalAdmissionSource select(mapColumn(",
 				"          country,",
 				"          indicator,",
@@ -80,7 +107,9 @@
 				"          population",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> selectRequiredFields2"
+				"     skipDuplicateMapOutputs: true) ~> selectRequiredFields2",
+				"selectRequiredFields2 split(indicator == 'Weekly new hospital admissions per 100k'||indicator == 'Weekly new ICU admissions per 100k',",
+				"     disjoint: false) ~> SplitDailyFromWeekly@(Weekly, daily)"
 			]
 		}
 	}
