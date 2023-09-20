@@ -5,7 +5,7 @@ This project is a complete data pipeline using different Azure services. Althoug
 Lets have a little review of the ETL process and Azure servvices involve:
 
 - Extraction:
-  - hola mundo
+  - The main data source is a Blob storage configured in an Storage Account that allows Hierarchical Namespace complemented by Data Lake Storage Gen2 endpoint.
 - Transform:
 - Load:
 
