@@ -5,7 +5,7 @@ This project is a complete data pipeline using different Azure services. Althoug
 Lets have a little review of the ETL process and Azure servvices involve:
 
 - Extraction:
- - hola mundo
+  - hola mundo
 - Transform:
 - Load:
 
